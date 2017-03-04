@@ -1,0 +1,90 @@
+<?xml version = '1.0'?>
+<DatabaseTemplate name="db11" description=" " version="11.2.0.0.0">
+   <CommonAttributes>
+      <option name="OMS" value="false"/>
+      <option name="JSERVER" value="false"/>
+      <option name="SPATIAL" value="false"/>
+      <option name="IMEDIA" value="false"/>
+      <option name="XDB_PROTOCOLS" value="false"/>
+      <option name="ORACLE_TEXT" value="false"/>
+      <option name="SAMPLE_SCHEMA" value="false"/>
+      <option name="CWMLITE" value="false"/>
+      <option name="EM_REPOSITORY" value="false"/>
+      <option name="APEX" value="false"/>
+      <option name="OWB" value="false"/>
+      <option name="DV" value="false"/>
+   </CommonAttributes>
+   <Variables/>
+   <CustomScripts Execute="true">
+      <CustomScript script="WORKDIR/addredo4k.sql"/>
+      <CustomScript script="WORKDIR/datapump.sql"/>
+      <CustomScript script="WORKDIR/datapatch.sql"/>
+      <CustomScript script="$ORACLE_HOME/rdbms/admin/utlrp.sql"/>
+      <CustomScript script="WORKDIR/parameters.sql"/>
+      <CustomScript script="WORKDIR/spfiletoadm.sql"/>
+   </CustomScripts>
+   <InitParamAttributes>
+      <InitParams>
+         <initParam name="audit_file_dest" value="AUDIT_PATH"/>
+         <initParam name="audit_trail" value="db"/>
+         <initParam name="compatible" value="11.2.0.0.0"/>
+         <initParam name="control_files" value="(&quot;CONTROL1_PATH/CONTROL1_FILE&quot;, &quot;CONTROL2_PATH/CONTROL2_FILE&quot;, &quot;CONTROL3_PATH/CONTROL3_FILE&quot; )"/>
+         <initParam name="db_block_size" value="BLOCKSIZE" unit="KB"/>
+         <initParam name="db_domain" value=""/>
+         <initParam name="db_recovery_file_dest" value="FRA_PATH"/>
+         <initParam name="db_recovery_file_dest_size" value="4977" unit="MB"/>
+         <initParam name="diagnostic_dest" value="DIAG_PATH"/>
+         <initParam name="log_archive_format" value="DB_UNIQUE_NAME_%t_%s_%r.dbf"/>
+         <initParam name="memory_target" value="memory_target_VAL" unit="MB"/>
+         <initParam name="processes" value="processes_VAL"/>
+         <initParam name="open_cursors" value="open_cursors_VAL"/>
+         <initParam name="remote_login_passwordfile" value="EXCLUSIVE"/>
+         <initParam name="undo_tablespace" value="UNDOTBS1"/>
+         <initParam name="_disk_sector_size_override" value="true"/>
+      </InitParams>
+      <MiscParams>
+         <archiveLogMode>true</archiveLogMode>
+         <initParamFileName>ADMIN_PATH/DB_UNIQUE_NAME/pfile/init{SID}.ora</initParamFileName>
+      </MiscParams>
+      <SPfile useSPFile="true">{ORACLE_HOME}/dbs/spfile{SID}.ora</SPfile>
+   </InitParamAttributes>
+   <StorageAttributes>
+      <DataFiles>
+         <Location>TOOLDIR/dbtemplates/PLATFORM_FULLVERSION_BLOCKSIZE.dfb</Location>
+         <SourceDBName>P12345A</SourceDBName>
+         <Name id="1" Tablespace="SYSTEM" Contents="PERMANENT" Size="1024" autoextend="true" blocksize="BLOCKSBYTES">SYSTEM_PATH/SYSTEM_FILE</Name>
+         <Name id="2" Tablespace="SYSAUX" Contents="PERMANENT" Size="1024" autoextend="true" blocksize="BLOCKSBYTES">SYSAUX_PATH/SYSAUX_FILE</Name>
+         <Name id="3" Tablespace="UNDOTBS1" Contents="UNDO" Size="1024" autoextend="true" blocksize="BLOCKSBYTES">UNDO_PATH/UNDO_FILE</Name>
+         <Name id="4" Tablespace="DATA0001" Contents="PERMANENT" Size="1024" autoextend="true" blocksize="BLOCKSBYTES">DATA0001_PATH/DATA0001_FILE</Name>
+         <Name id="5" Tablespace="INDX0001" Contents="PERMANENT" Size="1024" autoextend="true" blocksize="BLOCKSBYTES">INDX0001_PATH/INDX0001_FILE</Name>
+         <Name id="6" Tablespace="STATSPACK" Contents="PERMANENT" Size="512" autoextend="true" blocksize="BLOCKSBYTES">STATSPACK_PATH/STATSPACK_FILE</Name>
+      </DataFiles>
+      <TempFiles>
+         <Name id="1" Tablespace="TEMP" Contents="TEMPORARY" Size="1024">TEMP_PATH/TEMP_FILE</Name>
+      </TempFiles>
+      <ControlfileAttributes id="Fichier de contrôle">
+         <maxDatafiles>100</maxDatafiles>
+         <maxLogfiles>16</maxLogfiles>
+         <maxLogMembers>3</maxLogMembers>
+         <maxLogHistory>1</maxLogHistory>
+         <maxInstances>8</maxInstances>
+         <image name="CONTROL1_FILE" filepath="CONTROL1_PATH/"/>
+         <image name="CONTROL2_FILE" filepath="CONTROL2_PATH/"/>
+         <image name="CONTROL3_FILE" filepath="CONTROL3_PATH/"/>
+      </ControlfileAttributes>
+      <RedoLogGroupAttributes id="4">
+         <reuse>false</reuse>
+         <fileSize unit="MB">50</fileSize>
+         <Thread>1</Thread>
+         <member ordinal="0" memberName="redotmp11" filepath="REDO11_PATH/"/>
+         <member ordinal="0" memberName="redotmp12" filepath="REDO12_PATH/"/>
+      </RedoLogGroupAttributes>
+      <RedoLogGroupAttributes id="5">
+         <reuse>false</reuse>
+         <fileSize unit="MB">50</fileSize>
+         <Thread>1</Thread>
+         <member ordinal="0" memberName="redotmp21" filepath="REDO21_PATH/"/>
+         <member ordinal="0" memberName="redotmp22" filepath="REDO22_PATH/"/>
+      </RedoLogGroupAttributes>
+   </StorageAttributes>
+</DatabaseTemplate>

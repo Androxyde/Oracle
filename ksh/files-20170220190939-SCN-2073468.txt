@@ -1,0 +1,5 @@
+/apps/orafra/P12345AP1/obelix/P12345A_DATABASE_20170220_0lrt2rii_s21_p1.bkp
+/apps/orafra/P12345AP1/archivelog/2017_02_20/o1_mf_1_24_dbpd6gdm_.arc
+/apps/orafra/P12345AP1/obelix/P12345A_DATABASE_20170220_0mrt2rii_s22_p1.bkp
+/apps/orafra/P12345AP1/obelix/P12345A_DATABASE_20170220_0krt2rih_s20_p1.bkp
+/apps/orafra/P12345AP1/obelix/P12345A_CONTROL_20170220_0ort2rim.bkp

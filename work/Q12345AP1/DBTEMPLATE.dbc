@@ -1,0 +1,87 @@
+<?xml version = '1.0'?>
+<DatabaseTemplate name="db12" description=" " version="12.1.0.2.0">
+   <CommonAttributes>
+      <option name="OMS" value="false"/>
+      <option name="JSERVER" value="false"/>
+      <option name="SPATIAL" value="false"/>
+      <option name="IMEDIA" value="false"/>
+      <option name="XDB_PROTOCOLS" value="false"/>
+      <option name="ORACLE_TEXT" value="false"/>
+      <option name="SAMPLE_SCHEMA" value="false"/>
+      <option name="CWMLITE" value="false"/>
+      <option name="EM_REPOSITORY" value="false"/>
+      <option name="APEX" value="false"/>
+      <option name="OWB" value="false"/>
+      <option name="DV" value="false"/>
+   </CommonAttributes>
+   <Variables/>
+   <CustomScripts Execute="true">
+      <CustomScript script="/apps/stage/tools/oracle/work/Q12345AP1/custom.sql"/>
+   </CustomScripts>
+   <InitParamAttributes>
+      <InitParams>
+         <initParam name="db_block_size" value="8" unit="KB"/>
+         <initParam name="memory_target" value="1280" unit="MB"/>
+         <initParam name="open_cursors" value="600"/>
+         <initParam name="processes" value="600"/>
+         <initParam name="undo_tablespace" value="UNDOTBS1"/>
+         <initParam name="control_files" value="(&quot;/apps/oradata01/Q12345AP1/datafile/control01.ctl&quot;, &quot;/apps/orafra/Q12345AP1/control02.ctl&quot;, &quot;/apps/oracle/adm/Q12345AP1/control03.ctl&quot; )"/>
+         <initParam name="compatible" value="12.1.0.2.0"/>
+         <initParam name="audit_file_dest" value="/apps/oracle/diag/rdbms/q12345ap1/Q12345AP10/audit"/>
+         <initParam name="audit_trail" value="db"/>
+         <initParam name="diagnostic_dest" value="/apps/oracle"/>
+         <initParam name="remote_login_passwordfile" value="EXCLUSIVE"/>
+         <initParam name="dispatchers" value="(PROTOCOL=TCP) (SERVICE={SID}XDB)"/>
+         <initParam name="db_recovery_file_dest" value="/apps/orafra"/>
+         <initParam name="db_recovery_file_dest_size" value="" unit="MB"/>
+         <initParam name="_disk_sector_size_override" value="true"/>
+         <initParam name="nls_language" value="AMERICAN"/>
+         <initParam name="nls_territory" value="AMERICA"/>
+      </InitParams>
+      <MiscParams>
+         <dataVaultEnabled>false</dataVaultEnabled>
+         <archiveLogMode>true</archiveLogMode>
+         <initParamFileName>/apps/oracle/adm/Q12345AP1/pfile/init{SID}.ora</initParamFileName>
+      </MiscParams>
+      <SPfile useSPFile="true">{ORACLE_HOME}/dbs/spfile{SID}.ora</SPfile>
+   </InitParamAttributes>
+   <StorageAttributes>
+      <DataFiles>
+         <Location>/apps/stage/tools/oracle/dbtemplates/RHAS_12.1.0.2.0_8.dfb</Location>
+         <SourceDBName>Q12345A</SourceDBName>
+         <Name id="1" Tablespace="SYSTEM" Contents="PERMANENT" Size="1024" autoextend="true" blocksize="8192" con_id="0">/apps/oradata01/Q12345AP1/datafile/sys01.dbf</Name>
+         <Name id="2" Tablespace="SYSAUX" Contents="PERMANENT" Size="1024" autoextend="true" blocksize="8192" con_id="0">/apps/oradata01/Q12345AP1/datafile/sysaux01.dbf</Name>
+         <Name id="3" Tablespace="UNDOTBS1" Contents="UNDO" Size="1024" autoextend="true" blocksize="8192" con_id="0">/apps/oradata01/Q12345AP1/datafile/undo01.dbf</Name>
+         <Name id="4" Tablespace="DATA0001" Contents="PERMANENT" Size="1024" autoextend="true" blocksize="8192" con_id="0">/apps/oradata01/Q12345AP1/datafile/data0001.dbf</Name>
+         <Name id="5" Tablespace="INDX0001" Contents="PERMANENT" Size="1024" autoextend="true" blocksize="8192" con_id="0">/apps/oradata01/Q12345AP1/datafile/indx0001.dbf</Name>
+         <Name id="6" Tablespace="STATSPACK" Contents="PERMANENT" Size="512" autoextend="true" blocksize="8192" con_id="0">/apps/oradata01/Q12345AP1/datafile/stat0001.dbf</Name>
+      </DataFiles>
+      <TempFiles>
+         <Name id="1" Tablespace="TEMP" Contents="TEMPORARY" Size="1024" con_id="0">/apps/oradata01/Q12345AP1/datafile/tmp01.dbf</Name>
+      </TempFiles>
+      <ControlfileAttributes id="Fichier de contrôle">
+         <maxDatafiles>100</maxDatafiles>
+         <maxLogfiles>16</maxLogfiles>
+         <maxLogMembers>3</maxLogMembers>
+         <maxLogHistory>1</maxLogHistory>
+         <maxInstances>8</maxInstances>
+         <image name="control01.ctl" filepath="/apps/oradata01/Q12345AP1/datafile/"/>
+         <image name="control02.ctl" filepath="/apps/orafra/Q12345AP1/"/>
+         <image name="control03.ctl" filepath="/apps/oracle/adm/Q12345AP1/"/>
+      </ControlfileAttributes>
+      <RedoLogGroupAttributes id="4">
+         <reuse>false</reuse>
+         <fileSize unit="MB">50</fileSize>
+         <Thread>1</Thread>
+         <member ordinal="0" memberName="redotmp11" filepath="/apps/oradata01/Q12345AP1/datafile/"/>
+         <member ordinal="0" memberName="redotmp12" filepath="/apps/orafra/Q12345AP1/"/>
+      </RedoLogGroupAttributes>
+      <RedoLogGroupAttributes id="5">
+         <reuse>false</reuse>
+         <fileSize unit="MB">50</fileSize>
+         <Thread>1</Thread>
+         <member ordinal="0" memberName="redotmp21" filepath="/apps/oradata01/Q12345AP1/datafile/"/>
+         <member ordinal="0" memberName="redotmp22" filepath="/apps/orafra/Q12345AP1/"/>
+      </RedoLogGroupAttributes>
+   </StorageAttributes>
+</DatabaseTemplate>
